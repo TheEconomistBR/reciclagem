@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}Solicitação de Coleta{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center">Bem-vindo, {{ current_user.nome }}!</h1>
+    <p class="lead text-center">Solicite uma coleta de lixo abaixo.</p>
+
+    <form action="/morador" method="POST" onsubmit="return validateForm()" class="p-4 shadow-sm rounded bg-light">
+        <!-- Tipo de Lixo -->
+        <div class="form-group mb-4">
+            <label for="tipo_lixo" class="form-label">Tipo de Lixo Reciclável:</label>
+            <select class="form-control form-select" name="tipo_lixo" id="tipo_lixo" required>
+                <option value="" disabled selected>Selecione o tipo de lixo reciclável</option>
+                <option value="papel">Papel</option>
+                <option value="vidro">Vidro</option>
+                <option value="plastico">Plástico</option>
+                <option value="metal">Metal</option>
+                <option value="eletronico">Eletrônico</option>
+                <option value="tetrapak">Tetra Pak</option>
+                <option value="textil">Têxtil</option>
+            </select>
+        </div>
+        
+
+        <!-- Quantidade -->
+        <div class="form-group mb-4">
+            <label for="quantidade" class="form-label">Quantidade:</label>
+            <div class="input-group">
+                <input type="number" class="form-control" name="quantidade" id="quantidade" placeholder="Informe a quantidade aproximada" min="1" max="100" required>
+                <div class="input-group-append">
+                    <span class="input-group-text">sacos</span>
+                </div>
+            </div>
+            <small class="form-text text-muted">Informe a quantidade aproximada (ex: 5 sacos). Mínimo 1 saco.</small>
+        </div>
+
+        <!-- Endereço -->
+        <div class="form-group mb-4">
+            <label for="endereco" class="form-label">Endereço para Coleta:</label>
+            <input type="text" class="form-control" name="endereco" id="endereco" value="{{ current_user.tipo_via }} {{ current_user.nome_rua }}, {{ current_user.numero }}" readonly>
+        </div>
+
+        <!-- Alterar Endereço -->
+        <div class="form-group mb-4">
+            <p class="mb-1">Este é o seu endereço cadastrado. Deseja alterá-lo?</p>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="alterar_endereco" id="alterar_endereco_nao" value="nao" checked onclick="toggleEndereco(false)">
+                <label class="form-check-label" for="alterar_endereco_nao">Não</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="alterar_endereco" id="alterar_endereco_sim" value="sim" onclick="toggleEndereco(true)">
+                <label class="form-check-label" for="alterar_endereco_sim">Sim</label>
+            </div>
+        </div>
+
+        <!-- Novo Endereço -->
+        <div id="novo_endereco" style="display: none;">
+            <h4>Digite o novo endereço:</h4>
+            <div class="form-group mb-3">
+                <label for="tipo_via_novo" class="form-label">Tipo de Via:</label>
+                <input type="text" class="form-control" name="tipo_via_novo" id="tipo_via_novo" placeholder="Ex: Rua, Avenida, Travessa" disabled>
+            </div>
+            <div class="form-group mb-3">
+                <label for="nome_rua_novo" class="form-label">Nome da Rua:</label>
+                <input type="text" class="form-control" name="nome_rua_novo" id="nome_rua_novo" placeholder="Digite o nome da rua" disabled>
+            </div>
+            <div class="form-group mb-3">
+                <label for="numero_novo" class="form-label">Número:</label>
+                <input type="text" class="form-control" name="numero_novo" id="numero_novo" placeholder="Número da residência" disabled>
+            </div>
+            <div class="form-group mb-3">
+                <label for="cep_novo" class="form-label">CEP:</label>
+                <input type="text" class="form-control" name="cep_novo" id="cep_novo" placeholder="Digite o CEP" disabled>
+            </div>
+        </div>
+
+        <!-- Botão de Enviar -->
+        <div class="text-center">
+            <button type="submit" class="btn btn-success btn-lg">Solicitar Coleta</button>
+        </div>
+    </form>
+
+    <!-- Feedback -->
+    <div id="feedback-message" class="alert alert-success mt-4" style="display: none;">
+        Solicitação enviada com sucesso!
+    </div>
+
+    <!-- Script para habilitar/desabilitar os campos de novo endereço -->
+    <script>
+        function toggleEndereco(enable) {
+            document.getElementById('novo_endereco').style.display = enable ? 'block' : 'none';
+            var fields = ['tipo_via_novo', 'nome_rua_novo', 'numero_novo', 'cep_novo'];
+            for (var i = 0; i < fields.length; i++) {
+                document.getElementById(fields[i]).disabled = !enable;
+            }
+        }
+
+        function validateForm() {
+            var tipoLixo = document.getElementById('tipo_lixo').value;
+            if (!tipoLixo) {
+                alert('Por favor, selecione o tipo de lixo.');
+                return false;
+            }
+
+            var alterarEndereco = document.querySelector('input[name="alterar_endereco"]:checked').value;
+            if (alterarEndereco === 'sim') {
+                var requiredFields = ['tipo_via_novo', 'nome_rua_novo', 'numero_novo', 'cep_novo'];
+                for (var i = 0; i < requiredFields.length; i++) {
+                    if (document.getElementById(requiredFields[i]).value === '') {
+                        alert('Por favor, preencha todos os campos do novo endereço.');
+                        return false;
+                    }
+                }
+            }
+
+            document.getElementById('feedback-message').style.display = 'block';
+            return true;
+        }
+    </script>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Acompanhe sua Coleta{% endblock %}
+
+{% block content %}
+    <h1>Acompanhe sua Coleta</h1>
+
+    {% if solicitacoes %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Tipo de Lixo</th>
+                    <th>Quantidade</th>
+                    <th>Endereço</th>
+                    <th>Status</th>
+                    <th>Catador</th> <!-- Novo campo para mostrar quem aceitou -->
+                    <th>Ações</th> <!-- Campo para ações do usuário -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for solicitacao in solicitacoes %}
+                    <tr>
+                        <td>{{ solicitacao.tipo_lixo }}</td>
+                        <td>{{ solicitacao.quantidade }}</td>
+                        <td>{{ solicitacao.endereco }}</td>
+                        <td>
+                            {% if solicitacao.status == 'pendente' %}
+                                <span class="badge badge-warning">Pendente</span>
+                            {% elif solicitacao.status == 'aceito' %}
+                                <span class="badge badge-success">Aceito</span>
+                            {% elif solicitacao.status == 'retirado' %}
+                                <span class="badge badge-info">Retirado</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if solicitacao.catador %}
+                                {{ solicitacao.catador.nome }} <!-- Exibir o nome do catador -->
+                            {% else %}
+                                <span class="badge badge-secondary">Ainda não aceito</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <!-- Exibir botão de confirmar retirada se o status for aceito -->
+                            {% if solicitacao.status == 'aceito' %}
+                                <form method="POST" action="{{ url_for('confirmar_retirada', solicitacao_id=solicitacao.id) }}">
+                                    <button type="submit" class="btn btn-primary">Confirmar Retirada</button>
+                                </form>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Você ainda não fez nenhuma solicitação de coleta.</p>
+    {% endif %}
+{% endblock %}

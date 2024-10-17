@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}Ranking de Moradores e Catadores{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center">Ranking de Moradores e Catadores</h2>
+
+  <!-- Ranking de Moradores -->
+  <div class="card mt-4">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">
+        <i class="fas fa-users"></i> Ranking de Moradores (Quantidade de lixo solicitado para coleta)
+      </h4>
+    </div>
+    <div class="card-body">
+      <table class="table table-striped table-bordered ranking-table">
+        <thead>
+          <tr>
+            <th>Posição</th>
+            <th>Nome do Morador</th>
+            <th>Pedidos de Coleta</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for morador in ranking_moradores %}
+          <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ morador.name }}</td>
+            <td>{{ morador.requests }}</td>
+            <td>
+                {% if loop.index == 1 %}
+                  <i class="fas fa-medal gold"></i> <!-- Medalha de ouro -->
+                {% elif loop.index == 2 %}
+                  <i class="fas fa-medal silver"></i> <!-- Medalha de prata -->
+                {% elif loop.index == 3 %}
+                  <i class="fas fa-medal bronze"></i> <!-- Medalha de bronze -->
+                {% endif %}
+              </td>
+              
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Ranking de Catadores -->
+  <div class="card mt-4">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">
+        <i class="fas fa-recycle"></i> Ranking de Catadores (Quantidade de pedidos coletados)
+      </h4>
+    </div>
+    <div class="card-body">
+      <table class="table table-striped table-bordered ranking-table">
+        <thead>
+          <tr>
+            <th>Posição</th>
+            <th>Nome do Catador</th>
+            <th>Pedidos Coletados</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for catador in ranking_catadores %}
+          <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ catador.name }}</td>
+            <td>{{ catador.collected }}</td>
+            <td>
+                {% if loop.index == 1 %}
+                  <i class="fas fa-medal gold"></i> <!-- Medalha de ouro -->
+                {% elif loop.index == 2 %}
+                  <i class="fas fa-medal silver"></i> <!-- Medalha de prata -->
+                {% elif loop.index == 3 %}
+                  <i class="fas fa-medal bronze"></i> <!-- Medalha de bronze -->
+                {% endif %}
+              </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

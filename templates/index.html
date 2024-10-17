@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+
+{% block title %}Coleta Palmeira{% endblock %}
+
+{% block content %}
+    <div class="welcome-container">
+        <h1 style="color: green;">Bem-vindo ao Projeto Coleta Palmeira</h1>
+        <p>Nosso programa incentiva a reciclagem em comunidades locais com catadores cadastrados. Recompensando os moradores com pontos que podem ser trocados por benefícios e descontos. Além de ajudar o meio ambiente, você também pode economizar em suas compras e contas públicas. 
+            Saiba como funciona abaixo.</p>
+        <p>Entre ou cadastre-se para solicitar ou prestar serviços de coleta de lixo.</p>
+    </div>
+    <br>
+        
+        <!-- Como funciona o programa -->
+<section class="mb-5">
+    <div class="row">
+        <div class="col-md-12"> <!-- Aqui mudamos para ocupar 100% da largura -->
+            <h2 style="color: green;">Como Funciona</h2>
+            <p>Os moradores podem solicitar a coleta de lixo reciclável diretamente no sistema. Assim que a cooperativa confirmar a coleta, os pontos são creditados automaticamente na conta do usuário, de acordo com a quantidade e o tipo de material reciclado.</p>
+        </div>
+    </div>
+</section>
+    
+        <!-- Acumulação de pontos -->
+        <section class="mb-5">
+            <h2 style="color: green;">Acumulação de Pontos</h2>
+            <div class="row text-center">
+                <div class="col-md-3">
+                    <div class="p-4 shadow-sm rounded">
+                        <h4>Papel</h4>
+                        <p>1 Saco = <strong>10 pontos</strong></p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="p-4 shadow-sm rounded">
+                        <h4>Plástico</h4>
+                        <p>1 Saco = <strong>15 pontos</strong></p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="p-4 shadow-sm rounded">
+                        <h4>Metal</h4>
+                        <p>1 Saco = <strong>20 pontos</strong></p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="p-4 shadow-sm rounded">
+                        <h4>Eletrônicos</h4>
+                        <p>Pontuação diferenciada</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- Troca de pontos por benefícios -->
+        <section class="mb-5">
+            <h2 style="color: green;">Troca de Pontos por Benefícios</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Descontos em Farmácias e Mercados</h4>
+                    <ul>
+                        <li>100 pontos = 5% de desconto em medicamentos</li>
+                        <li>200 pontos = R$ 10 de desconto em supermercados parceiros</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h4>Descontos em Contas Públicas</h4>
+                    <p>Moradores podem utilizar seus pontos acumulados para obter descontos de até 10% no IPTU, além de descontos em contas de água e luz.</p>
+                </div>
+            </div>
+        </section>
+
+      
+<!-- Seção Confira os Parceiros -->
+<section class="mb-5">
+    <h2 style="color: green;">Confira os Parceiros</h2>
+    <div class="row text-center">
+        <!-- Parceiro 1 -->
+        <div class="col-md-4 mb-4">
+            <div class="partner-card p-3 shadow-sm rounded">
+                <img src="{{ url_for('static', filename='partners/partners1.png') }}" alt="Parceiro 1" class="img-fluid mb-3" style="max-width: 100%; height: auto;">
+                <h5>Parceiro 1</h5>
+            </div>
+        </div>
+        <!-- Parceiro 2 -->
+        <div class="col-md-4 mb-4">
+            <div class="partner-card p-3 shadow-sm rounded">
+                <img src="{{ url_for('static', filename='partners/partners2.png') }}" alt="Parceiro 2" class="img-fluid mb-3" style="max-width: 100%; height: auto;">
+                <h5>Parceiro 2</h5>
+            </div>
+        </div>
+        <!-- Parceiro 3 -->
+        <div class="col-md-4 mb-4">
+            <div class="partner-card p-3 shadow-sm rounded">
+                <img src="{{ url_for('static', filename='partners/partners3.png') }}" alt="Parceiro 3" class="img-fluid mb-3" style="max-width: 100%; height: auto;">
+                <h5>Parceiro 3</h5>
+            </div>
+        </div>
+        <!-- Parceiro 4 -->
+        <div class="col-md-4 mb-4">
+            <div class="partner-card p-3 shadow-sm rounded">
+                <img src="{{ url_for('static', filename='partners/partners4.jpg') }}" alt="Parceiro 3" class="img-fluid mb-3" style="max-width: 100%; height: auto;">
+                <h5>Parceiro 4</h5>
+            </div>
+        </div>
+        <!-- Parceiro 5 -->
+        <div class="col-md-4 mb-4">
+            <div class="partner-card p-3 shadow-sm rounded">
+                <img src="{{ url_for('static', filename='partners/partners5.jpg') }}" alt="Parceiro 3" class="img-fluid mb-3" style="max-width: 100%; height: auto;">
+                <h5>Parceiro 5</h5>
+            </div>
+        </div>
+        <!-- Parceiro 6 -->
+        <div class="col-md-4 mb-4">
+            <div class="partner-card p-3 shadow-sm rounded">
+                <img src="{{ url_for('static', filename='partners/partners6.jpg') }}" alt="Parceiro 3" class="img-fluid mb-3" style="max-width: 100%; height: auto;">
+                <h5>Parceiro 5</h5>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+    
+        <!-- Benefícios Fiscais para Cooperativas e Empresas -->
+        <section class="mb-5">
+            <h2 style="color: green;">Benefícios Fiscais para Empresas</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Incentivos para Cooperativas</h4>
+                    <p>As cooperativas que participam do sistema podem receber incentivos fiscais, como isenção de tributos municipais e deduções no ISS, incentivando uma maior participação na coleta de recicláveis.</p>
+                </div>
+                <div class="col-md-6">
+                    <h4>Incentivos para Empresas</h4>
+                    <p>Empresas parceiras que oferecem descontos ou se tornam pontos de coleta de materiais recicláveis também podem se beneficiar de incentivos fiscais municipais.</p>
+                </div>
+            </div>
+        </section>
+    
+        <!-- Gamificação do sistema -->
+        <section class="mb-5">
+            <h2 style="color: green;">Gamificação e Ranking de Usuários</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Ranking de Recicladores</h4>
+                    <p>O sistema conta com um ranking para destacar os maiores recicladores da comunidade. Usuários com as melhores pontuações podem receber o título de "Reciclador do Mês" e ganhar recompensas extras.</p>
+                </div>
+                <div class="col-md-6">
+                    <h4>Desafios Mensais</h4>
+                    <p>Os moradores também podem participar de desafios mensais, como reciclar uma certa quantidade de materiais para ganhar pontos em dobro ou receber recompensas adicionais.</p>
+                </div>
+            </div>
+        </section>
+    
+        <!-- Engajamento comunitário -->
+        <section class="mb-5">
+            <h2 style="color: green;">Engajamento Comunitário</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Educação Ambiental</h4>
+                    <p>Organizamos palestras e eventos para conscientizar a população sobre a importância da reciclagem e como o programa beneficia tanto o meio ambiente quanto a economia local.</p>
+                </div>
+                <div class="col-md-6">
+                    <h4>Competição entre Bairros</h4>
+                    <p>Os bairros que reciclarem mais ao longo do ano podem ganhar prêmios coletivos, como melhorias em áreas públicas, praças e parques.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

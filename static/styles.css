@@ -1,0 +1,98 @@
+/* Estilos básicos */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8f5; /* Verde muito claro */
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar */
+nav {
+    background-color: #4caf50; /* Verde reciclável */
+    padding: 15px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Container principal */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-top: 30px;
+}
+
+/* Ranking - Destaque somente para os três primeiros */
+.ranking-table tbody tr:nth-child(1) {
+    background-color: #e0f7fa; /* Azul claro para o primeiro lugar */
+}
+
+.ranking-table tbody tr:nth-child(2) {
+    background-color: #f1f8e9; /* Verde claro para o segundo lugar */
+}
+
+.ranking-table tbody tr:nth-child(3) {
+    background-color: #fff3e0; /* Laranja claro para o terceiro lugar */
+}
+
+/* Cabeçalho da tabela de ranking */
+.ranking-table thead th {
+    background-color: #388e3c; /* Verde escuro */
+    color: white;
+    text-align: left;
+    font-weight: bold;
+}
+
+/* Ajustes de status */
+.status-retirado {
+    background-color: #388e3c; /* Verde escuro */
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+/* Bordas suaves */
+.table-bordered {
+    border-radius: 10px;
+    border-color: #e0e0e0;
+}
+
+/* Cores das medalhas */
+i.fa-medal {
+    font-size: 1.2em;
+}
+i.fa-medal.gold {
+    color: #ffd700; /* Medalha de ouro */
+}
+i.fa-medal.silver {
+    color: #c0c0c0; /* Medalha de prata */
+}
+i.fa-medal.bronze {
+    color: #cd7f32; /* Medalha de bronze */
+}

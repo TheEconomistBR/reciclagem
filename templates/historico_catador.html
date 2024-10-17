@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Histórico de Coletas{% endblock %}
+
+{% block content %}
+    <h1>Histórico de Coletas</h1>
+
+    {% if coletas %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Morador</th> <!-- Nome do Morador -->
+                    <th>Tipo de Lixo</th>
+                    <th>Quantidade</th>
+                    <th>Endereço</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for coleta in coletas %}
+                    <tr>
+                        <td>{{ coleta.morador.nome }}</td> <!-- Nome do Morador -->
+                        <td>{{ coleta.tipo_lixo }}</td>
+                        <td>{{ coleta.quantidade }}</td>
+                        <td>{{ coleta.endereco }}</td>
+                        <td>
+                            {% if coleta.status == 'pendente' %}
+                                <span class="badge badge-warning">Pendente</span>
+                            {% elif coleta.status == 'aceito' %}
+                                <span class="badge badge-success">Aceito</span>
+                            {% elif coleta.status == 'retirado' %}
+                                <span class="badge badge-info">Retirado</span>
+                            {% endif %}
+                        </td>
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Você ainda não aceitou nenhuma solicitação de coleta.</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Painel do Catador{% endblock %}
+
+{% block content %}
+    <h1>Pedidos de Coleta</h1>
+    <ul class="list-group">
+        {% for pedido in pedidos %}
+            <li class="list-group-item">
+                <p><strong>Usuário:</strong> {{ pedido.morador.nome }}</p>
+                <p><strong>Tipo de Lixo:</strong> {{ pedido.tipo_lixo }}</p>
+                <p><strong>Quantidade:</strong> {{ pedido.quantidade }}</p>
+                <p><strong>Endereço:</strong> {{ pedido.endereco }}</p>
+                
+                <!-- Exibir o botão de Aceitar se o pedido estiver pendente -->
+                {% if pedido.status == 'pendente' %}
+                    <form method="POST" action="{{ url_for('catador') }}">
+                        <input type="hidden" name="pedido_id" value="{{ pedido.id }}">
+                        <button type="submit" class="btn btn-success">Aceitar</button>
+                    </form>
+                {% elif pedido.status == 'aceito' %}
+                    <span class="badge badge-success">Aceito</span>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

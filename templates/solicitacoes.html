@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Solicitações de Coleta{% endblock %}
+
+{% block content %}
+<h2>Nova Solicitação de Coleta</h2>
+<form method="POST" action="{{ url_for('solicitacoes') }}">
+    <div class="form-group">
+        <label for="tipo_lixo">Tipo de Lixo:</label>
+        <select id="tipo_lixo" name="tipo_lixo" required>
+            <option value="orgânico">Orgânico</option>
+            <option value="reciclável">Reciclável</option>
+            <option value="eletrônico">Eletrônico</option>
+            <option value="entulho">Entulho</option>
+            <option value="hospitalar">Hospitalar</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="localizacao">Endereço de Coleta:</label>
+        <input type="text" id="localizacao" name="localizacao" value="{{ usuario.tipo_via }} {{ usuario.nome_rua }}, {{ usuario.numero }}, {{ usuario.bairro }}, {{ usuario.cep }}" required>
+    </div>
+
+    <button type="submit" class="btn">Enviar Solicitação</button>
+</form>
+
+<h3>Solicitações Recentes</h3>
+<ul class="solicitacoes-list">
+    {% for solicitacao in solicitacoes %}
+    <li class="solicitacao-item">{{ solicitacao.tipo_lixo }} - {{ solicitacao.localizacao }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
